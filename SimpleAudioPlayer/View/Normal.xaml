@@ -1,0 +1,189 @@
+﻿<UserControl
+  x:Class="SimpleAudioPlayer.Normal"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:l="clr-namespace:SimpleAudioPlayer"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  Width="400"
+  d:DataContext="{d:DesignInstance {x:Type l:ViewModel}}"
+  mc:Ignorable="d">
+  <UserControl.Resources>
+    <Style TargetType="{x:Type Button}">
+      <Setter Property="MinWidth" Value="26" />
+      <Setter Property="MinHeight" Value="26" />
+    </Style>
+    <Style TargetType="ToggleButton">
+      <Setter Property="MinWidth" Value="26" />
+      <Setter Property="MinHeight" Value="26" />
+    </Style>
+    <Style TargetType="HeaderedContentControl">
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="HeaderedContentControl">
+            <Grid>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" SharedSizeGroup="HeaderedContentControl" />
+                <ColumnDefinition />
+              </Grid.ColumnDefinitions>
+              <ContentPresenter
+                Margin="5"
+                VerticalAlignment="Center"
+                ContentSource="Header" />
+              <ContentPresenter
+                Grid.Column="1"
+                Margin="5"
+                VerticalAlignment="Center" />
+            </Grid>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+  </UserControl.Resources>
+  <Grid x:Name="grid">
+    <Grid.RowDefinitions>
+      <RowDefinition />
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
+    </Grid.RowDefinitions>
+    <Image
+      Grid.RowSpan="3"
+      Height="{Binding ActualWidth, ElementName=grid, Mode=OneWay}"
+      Source="{Binding Player.CurrentItem.AlbumImage}">
+      <Image.Effect>
+        <BlurEffect Radius="30" />
+      </Image.Effect>
+    </Image>
+    <Rectangle Grid.RowSpan="3" Fill="#7FFFFFFF" />
+    <Grid IsSharedSizeScope="true">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition />
+        <ColumnDefinition Width="Auto" />
+      </Grid.ColumnDefinitions>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+        <RowDefinition />
+      </Grid.RowDefinitions>
+      <HeaderedContentControl Content="{Binding Player.CurrentItem.Title}" Header="タイトル:" />
+      <HeaderedContentControl
+        Grid.Row="1"
+        Content="{Binding Player.CurrentItem.Artist}"
+        Header="アーティスト:" />
+      <HeaderedContentControl
+        Grid.Row="2"
+        Content="{Binding Player.CurrentItem.AlbumName}"
+        Header="アルバム:" />
+      <ToggleButton
+        Grid.Column="1"
+        Margin="5"
+        Content="&#xE718;"
+        FontFamily="Segoe MDL2 Assets"
+        IsChecked="{Binding Setting.Topmost}"
+        ToolTip="Topmost" />
+      <ToggleButton
+        Grid.Row="1"
+        Grid.Column="1"
+        Margin="5"
+        Content="&#xE90B;"
+        FontFamily="Segoe MDL2 Assets"
+        IsChecked="{Binding ShowPlayList}"
+        ToolTip="PlayList" />
+      <ToggleButton
+        Grid.Row="2"
+        Grid.Column="1"
+        Margin="5"
+        Content="&#xE73F;"
+        FontFamily="Segoe MDL2 Assets"
+        IsChecked="{Binding Setting.IsCompact}"
+        ToolTip="CompactMode" />
+    </Grid>
+    <Grid Grid.Row="1" IsSharedSizeScope="true">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto" SharedSizeGroup="A" />
+        <ColumnDefinition />
+        <ColumnDefinition Width="Auto" SharedSizeGroup="A" />
+      </Grid.ColumnDefinitions>
+      <TextBlock Margin="5" Text="{Binding Player.Position, Converter={StaticResource TimeSpan2ShortTimeConverter}, Mode=OneWay}" />
+      <l:SeekBar
+        Grid.Column="1"
+        Height="20"
+        Maximum="{Binding Player.NaturalDuration.TimeSpan, Converter={StaticResource TimeSpan2TotalSecondsConverter}, Mode=OneWay}"
+        Value="{Binding Player.Position, Converter={StaticResource TimeSpan2TotalSecondsConverter}}" />
+      <TextBlock
+        Grid.Column="2"
+        Margin="5"
+        Text="{Binding Player.NaturalDuration.TimeSpan, Converter={StaticResource TimeSpan2ShortTimeConverter}, Mode=OneWay, FallbackValue=00:00}" />
+    </Grid>
+    <Grid Grid.Row="2">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition />
+        <ColumnDefinition Width="Auto" />
+      </Grid.ColumnDefinitions>
+      <StackPanel Margin="5" Orientation="Horizontal">
+        <ToggleButton
+          Content="🔂"
+          IsChecked="{Binding Player.IsRepeatOnce}"
+          ToolTip="CompactMode" />
+        <ToggleButton
+          Content="🔁"
+          IsChecked="{Binding Player.IsRepeatAll}"
+          ToolTip="CompactMode" />
+        <ToggleButton
+          Content="🔀"
+          IsChecked="{Binding Player.IsShuffle}"
+          ToolTip="CompactMode" />
+      </StackPanel>
+      <StackPanel
+        Grid.Column="1"
+        Margin="5"
+        Orientation="Horizontal">
+        <Button
+          Command="{Binding Player.PreviousCommand}"
+          Content="⏮"
+          ToolTip="Previous" />
+        <Button
+          Command="{Binding Player.RewindCommand}"
+          Content="⏪"
+          ToolTip="Rewind" />
+        <Button
+          Command="{Binding Player.StopCommand}"
+          Content="⏹"
+          ToolTip="Stop" />
+        <Button
+          Command="{Binding Player.PlayCommand}"
+          Content="▶️"
+          ToolTip="Play" />
+        <Button
+          Command="{Binding Player.PauseCommand}"
+          Content="⏸"
+          ToolTip="Pause" />
+        <Button
+          Command="{Binding Player.ForwardCommand}"
+          Content="⏩"
+          ToolTip="Forward" />
+        <Button
+          Command="{Binding Player.NextCommand}"
+          Content="⏭"
+          ToolTip="Next" />
+      </StackPanel>
+      <Slider
+        Grid.Column="2"
+        Margin="5"
+        VerticalAlignment="Center"
+        LargeChange="0.1"
+        Maximum="1"
+        SmallChange="0.01"
+        Value="{Binding Player.Volume}" />
+      <ToggleButton
+        Grid.Column="3"
+        Margin="5"
+        Content="🔇"
+        IsChecked="{Binding Player.IsMuted}"
+        ToolTip="Mute" />
+    </Grid>
+  </Grid>
+</UserControl>

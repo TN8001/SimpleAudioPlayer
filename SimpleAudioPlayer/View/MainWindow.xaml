@@ -1,0 +1,30 @@
+﻿<Window
+  x:Class="SimpleAudioPlayer.MainWindow"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:l="clr-namespace:SimpleAudioPlayer"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  Title="SimpleAudioPlayer"
+  d:DataContext="{d:DesignInstance {x:Type l:ViewModel}}"
+  Left="{Binding Setting.MainWindow.Left, Mode=TwoWay}"
+  ResizeMode="NoResize"
+  SizeToContent="WidthAndHeight"
+  Top="{Binding Setting.MainWindow.Top, Mode=TwoWay}"
+  Topmost="{Binding Setting.MainWindow.Topmost}"
+  mc:Ignorable="d">
+  <Window.Style>
+    <Style TargetType="Window">
+      <Setter Property="WindowStyle" Value="SingleBorderWindow" />
+      <Style.Triggers>
+        <DataTrigger Binding="{Binding Setting.IsCompact}" Value="true">
+          <Setter Property="WindowStyle" Value="None" />
+        </DataTrigger>
+      </Style.Triggers>
+    </Style>
+  </Window.Style>
+  <StackPanel>
+    <l:Compact Visibility="{Binding Setting.IsCompact, Converter={StaticResource BooleanToVisibilityConverter}}" />
+    <l:Normal Visibility="{Binding Setting.IsNormal, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}" />
+  </StackPanel>
+</Window>

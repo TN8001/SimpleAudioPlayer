@@ -1,0 +1,13 @@
+﻿<UserControl
+  x:Class="SimpleAudioPlayer.MarqueeControl"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  x:Name="userControl">
+  <Canvas Height="{Binding ActualHeight, ElementName=marquee, Mode=OneWay}" ClipToBounds="True">
+    <StackPanel Name="marquee" Orientation="Horizontal">
+      <TextBlock Name="tb" Text="{Binding Text, ElementName=userControl}" />
+      <TextBlock Width="50" />
+      <TextBlock Name="tb2" Text="{Binding Text, ElementName=userControl}" />
+    </StackPanel>
+  </Canvas>
+</UserControl>

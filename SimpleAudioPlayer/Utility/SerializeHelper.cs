@@ -37,7 +37,7 @@ namespace SimpleAudioPlayer
             {
                 return new T();
             }
-            catch(SerializationException e)
+            catch(Exception e)
             {
                 var msg = $"{appName}設定ファイルが読み込めません。\n"
                         + "初期設定で読み込みますか？（設定ファイルは上書きされます。）\n"

@@ -1,5 +1,5 @@
 ﻿# SimpleAudioPlayer
-![アプリスクリーンショット](https://github.com/TN8001/SimpleAudioPlayer/blob/master/AppImage.png)
+![アプリスクリーンショット](AppImage.png)
 
 **注意** プレイヤー部分は排他的で同時利用はできません（スクリーンショット用に２個起動しました）
 ## 概要

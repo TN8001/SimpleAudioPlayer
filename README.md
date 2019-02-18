@@ -1,17 +1,19 @@
-# SimpleAudioPlayer
-![�A�v���X�N���[���V���b�g](https://github.com/TN8001/SimpleAudioPlayer/blob/master/AppImage.png)
+﻿# SimpleAudioPlayer
+![アプリスクリーンショット](https://github.com/TN8001/SimpleAudioPlayer/blob/master/AppImage.png)
 
-**����** �v���C���[�����͔r���I�œ������p�͂ł��܂���i�X�N���[���V���b�g�p�ɂQ�N�����܂����j
-## �T�v
-�I�[�f�B�I�v���[���[�̃T���v���A�v���iC# WPF�j
-## ����
-* �T�[�h�p�[�e�B���C�u�����s�g�p�iShell32.dll�̓^�O�擾�Ŏg�p�j
-* �R���p�N�g�ȃ^�C�v�ƃA�[�g���[�N�\���t���̑傫�߃^�C�v�̂Q�̌����ڂ�؂�ւ��\
-* �v���C���X�g�͂P�݂̂Ŏ����ۑ��Ȃ̂Ŕς킵����Ԃ��Ȃ�
-* Marquee�i�����e�L�X�g�j�R���g���[���t��
-## ���C�Z���X
-[MIT](https://github.com/TN8001/SimpleAudioPlayer/blob/master/LICENSE)
-## ���ӎ���
-* ��ؐӔC�͎����܂���
-* ���s�t�@�C���̃t�H���_�ɐݒ�t�@�C�������̂ŏ������߂�t�H���_�ɂ��Ă��������iProgram Files���͔����Ă��������j
-* �A�[�g���[�N�̓t�H���_��Folder.jpg���������ꍇ�̂݁i�ڍׂ́uFolder.jpg AlbumArtSmall.jpg�v�ŃO�O���Ă��������j
+**注意** プレイヤー部分は排他的で同時利用はできません（スクリーンショット用に２個起動しました）
+## 概要
+オーディオプレーヤーのサンプルアプリ（C# WPF）
+## 特徴
+* サードパーティライブラリ不使用（Shell32.dllはタグ取得で使用）
+* コンパクトなタイプとアートワーク表示付きの大きめタイプの２つの見た目を切り替え可能
+* プレイリストは１個のみで自動保存なので煩わしい手間がなし
+* Marquee（流れるテキスト）コントロール付き
+## ライセンス
+CC0 1.0 Universal
+
+[![CC0](http://i.creativecommons.org/p/zero/1.0/88x31.png)](LICENSE)
+## 注意事項
+* 一切責任は持ちません
+* 実行ファイルのフォルダに設定ファイルを作るので書き込めるフォルダにしてください（Program Files等は避けてください）
+* アートワークはフォルダにFolder.jpgがあった場合のみ（詳細は「Folder.jpg AlbumArtSmall.jpg」でググってください）
